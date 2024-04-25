@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main theme -->
+    <color name="primary">#78430F</color>
+    <color name="secondary">#B82C2B</color>
+    <color name="secondaryLight">#FFDDDD</color>
+    <color name="accent">#1B76D1</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+</resources>
