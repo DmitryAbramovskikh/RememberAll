@@ -13,7 +13,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.rememberall.ui.navigation.AppNavigationGraph
 import com.example.rememberall.ui.theme.RememberAllTheme
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity()
 {
     override fun onCreate(savedInstanceState: Bundle?) {

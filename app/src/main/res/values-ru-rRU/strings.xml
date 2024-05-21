@@ -4,4 +4,5 @@
 
     <!-- Main -->
     <string name="main_notes">Заметки</string>
+    <string name="note_detail_title">Редактировать заметку</string>
 </resources>
