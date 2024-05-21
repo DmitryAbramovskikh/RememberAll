@@ -1,27 +1,46 @@
 package com.example.rememberall.ui.note
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.rememberall.R
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteDetailScreen(navController: NavHostController)
 {
-    val viewModel: NoteDetailViewModel = viewModel()
-    val text = mutableStateOf(viewModel.text.value ?: "")
-        Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = colorResource(id = R.color.white)
-    ) {
-        Text(text = text.value)
+    val viewModel: NoteDetailViewModel = hiltViewModel()
+    val title by remember { mutableStateOf(viewModel.title.value ?: "") }
+    var text by remember { viewModel.text }
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = title)
+                })
+        }) { paddings ->
+        Column(modifier = Modifier.padding(paddings)) {
+            TextField(
+                value = text,
+                onValueChange = { text = it },
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(),
+                shape = RoundedCornerShape(8.dp),
+                colors = TextFieldDefaults.colors(
+                    unfocusedIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent
+                )
+            )
+        }
     }
 }
 

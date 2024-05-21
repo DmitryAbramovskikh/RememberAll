@@ -3,4 +3,8 @@
 
     <!-- Main -->
     <string name="main_notes">Notes</string>
+
+    <!-- Note Detail -->
+    <string name="note_detail_title">Edit note</string>
+
 </resources>
