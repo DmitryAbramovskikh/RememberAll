@@ -55,6 +55,8 @@ kapt {
 
 dependencies {
 
+    val lifecycleVersion = "2.8.1"
+
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0")
 
@@ -63,6 +65,7 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
     implementation("androidx.compose.material3:material3")
 
     implementation("com.google.dagger:hilt-android:2.51.1")
