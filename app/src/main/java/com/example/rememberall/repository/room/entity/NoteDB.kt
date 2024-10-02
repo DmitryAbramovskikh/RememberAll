@@ -12,6 +12,8 @@ data class NoteDB(
     @PrimaryKey
     @ColumnInfo("id")
     override val id: Int,
+    @ColumnInfo("title")
+    override val title: String,
     @ColumnInfo("text")
     override val text: String,
     @ColumnInfo("created")
@@ -22,6 +24,7 @@ data class NoteDB(
 {
     constructor(entity: Note): this (
         entity.id,
+        entity.title,
         entity.text,
         entity.created,
         entity.edited
