@@ -7,5 +7,7 @@ interface NoteService
 {
     fun fetchAll(): Flow<List<Note>>
 
+    fun getById(id: Int): Flow<Note?>
+
     fun save(note: Note)
 }

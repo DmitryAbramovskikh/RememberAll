@@ -11,6 +11,8 @@ class NoteServiceImpl @Inject constructor(private val offline: NoteRepositoryInt
     override fun fetchAll(): Flow<List<Note>> =
         offline.fetchAll().map { it.map { Note(it) } }
 
-    override fun save(note: Note) = offline.insert(note)
+    override fun getById(id: Int): Flow<Note?> =
+        offline.getById(id).map { it?.let { Note(it) } }
 
+    override fun save(note: Note) = offline.insert(note)
 }
