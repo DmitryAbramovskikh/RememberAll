@@ -7,4 +7,6 @@
     <!-- Note Detail -->
     <string name="note_detail_title">Edit note</string>
 
+    <!-- Image -->
+    <string name="image_title">Image</string>
 </resources>

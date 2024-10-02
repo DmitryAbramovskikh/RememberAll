@@ -3,6 +3,7 @@ package com.example.rememberall.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
+import com.example.rememberall.ui.image.ImageScreen
 import com.example.rememberall.ui.main.MainScreen
 import com.example.rememberall.ui.note.NoteDetailScreen
 
@@ -15,6 +16,9 @@ fun AppNavigationGraph(navController: NavHostController)
         }
         composable(Routes.NOTE_DETAIL_SCREEN) {
             NoteDetailScreen(navController)
+        }
+        composable(Routes.IMAGE_SCREEN) {
+            ImageScreen(navController)
         }
     }
 }

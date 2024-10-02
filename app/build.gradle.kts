@@ -68,6 +68,15 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-compiler:2.51.1")
 
+    //Room
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+
+    implementation ("com.google.mlkit:image-labeling:17.0.8")
+
     implementation("androidx.navigation:navigation-compose:2.7.7")
     androidTestImplementation("androidx.navigation:navigation-testing:2.7.7")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
