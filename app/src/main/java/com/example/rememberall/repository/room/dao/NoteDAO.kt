@@ -1,8 +1,8 @@
-package com.example.rememberall.model.repository.room.dao
+package com.example.rememberall.repository.room.dao
 
 import androidx.room.*
-import com.example.rememberall.model.repository.room.entity.NOTES_TABLE
-import com.example.rememberall.model.repository.room.entity.NoteDB
+import com.example.rememberall.repository.room.entity.NOTES_TABLE
+import com.example.rememberall.repository.room.entity.NoteDB
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -15,5 +15,5 @@ abstract class NoteDAO
     abstract  fun fetchByIds(ids: IntArray): Flow<List<NoteDB>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insert(entity: NoteDB)
+    abstract fun insert(entity: NoteDB)
 }

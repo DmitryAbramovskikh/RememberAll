@@ -1,8 +1,8 @@
-package com.example.rememberall.model.repository.room.entity
+package com.example.rememberall.repository.room.entity
 
 import androidx.room.*
 import com.example.rememberall.model.entity.Note
-import com.example.rememberall.model.repository.entity.NoteInterface
+import com.example.rememberall.repository.entity.NoteInterface
 import java.util.Date
 
 const val NOTES_TABLE = "notes"

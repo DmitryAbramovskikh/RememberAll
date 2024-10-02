@@ -1,4 +1,4 @@
-package com.example.rememberall.model.repository.entity
+package com.example.rememberall.repository.entity
 
 import java.util.Date
 

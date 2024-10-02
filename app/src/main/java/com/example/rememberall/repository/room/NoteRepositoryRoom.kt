@@ -1,10 +1,9 @@
-package com.example.rememberall.model.repository.room
+package com.example.rememberall.repository.room
 
 import com.example.rememberall.model.entity.Note
-import com.example.rememberall.model.repository.NoteRepositoryInterface
-import com.example.rememberall.model.repository.entity.NoteInterface
-import com.example.rememberall.model.repository.room.dao.DatabaseDAO
-import com.example.rememberall.model.repository.room.entity.NoteDB
+import com.example.rememberall.model.NoteRepositoryInterface
+import com.example.rememberall.repository.room.dao.DatabaseDAO
+import com.example.rememberall.repository.room.entity.NoteDB
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -18,5 +17,5 @@ class NoteRepositoryRoom @Inject constructor(databaseDAO: DatabaseDAO): NoteRepo
 
     override fun getByIds(ids: List<Int>) = noteDAO.fetchByIds(ids.toIntArray())
 
-    override suspend fun insert(note: Note) = noteDAO.insert(NoteDB(note))
+    override fun insert(note: Note) { noteDAO.insert(NoteDB(note)) }
 }

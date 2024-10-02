@@ -2,7 +2,7 @@ package com.example.rememberall.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.rememberall.model.repository.room.dao.DatabaseDAO
+import com.example.rememberall.repository.room.dao.DatabaseDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

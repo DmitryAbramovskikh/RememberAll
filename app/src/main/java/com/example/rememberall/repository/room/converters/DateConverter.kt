@@ -1,4 +1,4 @@
-package com.example.rememberall.model.repository.room.converters
+package com.example.rememberall.repository.room.converters
 
 import androidx.room.TypeConverter
 import java.util.Date

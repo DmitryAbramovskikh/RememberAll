@@ -7,5 +7,5 @@ interface NoteService
 {
     fun fetchAll(): Flow<List<Note>>
 
-    suspend fun save(note: Note)
+    fun save(note: Note)
 }

@@ -1,6 +1,6 @@
 package com.example.rememberall.model.entity
 
-import com.example.rememberall.model.repository.entity.NoteInterface
+import com.example.rememberall.repository.entity.NoteInterface
 import java.util.Date
 
 data class Note(val id: Int,

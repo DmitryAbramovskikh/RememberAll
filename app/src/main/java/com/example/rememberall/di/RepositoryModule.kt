@@ -1,8 +1,8 @@
 package com.example.rememberall.di
 
-import com.example.rememberall.model.repository.NoteRepositoryInterface
-import com.example.rememberall.model.repository.room.NoteRepositoryRoom
-import com.example.rememberall.model.repository.room.dao.DatabaseDAO
+import com.example.rememberall.model.NoteRepositoryInterface
+import com.example.rememberall.repository.room.NoteRepositoryRoom
+import com.example.rememberall.repository.room.dao.DatabaseDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

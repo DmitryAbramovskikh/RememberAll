@@ -1,7 +1,7 @@
-package com.example.rememberall.model.repository
+package com.example.rememberall.model
 
 import com.example.rememberall.model.entity.Note
-import com.example.rememberall.model.repository.entity.NoteInterface
+import com.example.rememberall.repository.entity.NoteInterface
 import kotlinx.coroutines.flow.Flow
 
 interface NoteRepositoryInterface
@@ -12,5 +12,5 @@ interface NoteRepositoryInterface
 
     fun getByIds(ids: List<Int>): Flow<List<NoteInterface>>
 
-    suspend fun insert(note: Note)
+    fun insert(note: Note)
 }
