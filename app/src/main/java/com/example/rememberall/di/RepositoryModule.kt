@@ -1,8 +1,8 @@
 package com.example.rememberall.di
 
 import com.example.rememberall.model.NoteRepositoryInterface
-import com.example.rememberall.repository.room.NoteRepositoryRoom
 import com.example.rememberall.repository.room.dao.DatabaseDAO
+import com.example.rememberall.repository.temp.NoteRepositoryMock
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,5 +15,5 @@ class RepositoryModule
 {
     @Singleton
     @Provides
-    fun provideNoteRepository(databaseDAO: DatabaseDAO): NoteRepositoryInterface = NoteRepositoryRoom(databaseDAO)
+    fun provideNoteRepository(databaseDAO: DatabaseDAO): NoteRepositoryInterface = NoteRepositoryMock//NoteRepositoryRoom(databaseDAO)
 }

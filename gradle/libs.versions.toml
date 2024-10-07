@@ -1,0 +1,52 @@
+[versions]
+activityCompose = "1.9.2"
+composeBom = "2024.09.03"
+espressoCore = "3.6.1"
+hiltAndroid = "2.51.1"
+hiltNavigationCompose = "1.2.0"
+imageLabeling = "17.0.9"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+kotlinxSerializationJson = "1.7.1"
+ktx = "2.0.0"
+kotlin = "2.0.0"
+lifecycleRuntimeKtx = "2.8.6"
+navigationCompose = "2.8.2"
+navigationFragmentKtx = "2.8.2"
+navigationTesting = "2.8.2"
+roomCompiler = "2.6.1"
+roomKtx = "2.6.1"
+roomRuntime = "2.6.1"
+runtimeLivedata = "1.7.3"
+
+[libraries]
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+android-ktx = { group = "androidx.core", name = "core.ktx", version.ref = "ktx" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+ext-junit = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroid" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+image-labeling = { module = "com.google.mlkit:image-labeling", version.ref = "imageLabeling" }
+junit = { module = "junit:junit", version.ref = "junit" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+material3 = { module = "androidx.compose.material3:material3" }
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navigationTesting" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "runtimeLivedata" }
+ui = { module = "androidx.compose.ui:ui" }
+ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
+ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+
+[plugins]
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

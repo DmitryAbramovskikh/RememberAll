@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class NoteDetailViewModel @Inject constructor(private val provider: StringProvider): ViewModel() {
+class NoteDetailViewModel @Inject constructor(provider: StringProvider): ViewModel() {
     val title: MutableLiveData<String> = MutableLiveData(provider.getString(R.string.note_detail_title))
     val text = mutableStateOf("")
 }

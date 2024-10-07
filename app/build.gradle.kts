@@ -4,6 +4,8 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -54,40 +56,43 @@ kapt {
 }
 
 dependencies {
+    implementation(libs.lifecycle.runtime.ktx)
 
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0")
+    implementation(libs.kotlinx.serialization.json)
 
-    implementation("androidx.activity:activity-compose:1.9.0")
-    implementation(platform("androidx.compose:compose-bom:2024.05.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
+    //Dagger/Hilt
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
+    kapt(libs.hilt.compiler)
 
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-compiler:2.51.1")
+    //Compose
+    implementation(libs.activity.compose)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.ui)
+    implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.material3)
+    implementation (libs.runtime.livedata)
+
+    //Navigation
+    implementation(libs.navigation.compose)
+    androidTestImplementation(libs.navigation.testing)
+    api(libs.navigation.fragment.ktx)
 
     //Room
-    val room_version = "2.6.1"
-    implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
 
-    implementation ("com.google.mlkit:image-labeling:17.0.8")
+    implementation (libs.image.labeling)
 
-    implementation("androidx.navigation:navigation-compose:2.7.7")
-    androidTestImplementation("androidx.navigation:navigation-testing:2.7.7")
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2024.05.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
 }
 
 kapt {
