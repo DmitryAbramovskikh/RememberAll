@@ -57,7 +57,6 @@ kapt {
 
 dependencies {
     implementation(libs.lifecycle.runtime.ktx)
-
     implementation(libs.kotlinx.serialization.json)
 
     //Dagger/Hilt
