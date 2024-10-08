@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -13,7 +13,6 @@ import androidx.navigation.NavHostController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBarBack(
-    title: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     actions: @Composable RowScope.() -> Unit = {},
     windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
@@ -22,7 +21,9 @@ fun AppBarBack(
     navController: NavHostController
 )
 {
-    TopAppBar(title, modifier, navigationIcon = {
+    val titleName = remember { mutableStateOf(navController.currentBackStackEntry?.destination?.label ?: "App") }
+
+    TopAppBar(title = { Text(text = titleName.value as String ) }, modifier, navigationIcon = {
         if (navController.previousBackStackEntry != null) {
             IconButton(onClick = { navController.navigateUp() }) {
                 Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack,

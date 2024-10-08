@@ -2,26 +2,27 @@ package com.example.rememberall.ui.note
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.rememberall.ui.base.StringProvider
 
 @Composable
 fun NoteDetailCompose(
-    id: Int = -1,
+    viewModel: NoteDetailViewModel,
     modifier: Modifier = Modifier
 )
 {
-    val viewModel: NoteDetailViewModel = hiltViewModel()
-    val title by viewModel.title.observeAsState()
+    val title by remember { viewModel.title }
 
-    Text(
-        text = title ?: "",
-        modifier = Modifier.fillMaxWidth().padding(4.dp, 16.dp)
+    OutlinedTextField(
+        value = title,
+        onValueChange = { viewModel.title.value = it },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp, 16.dp)
     )
 }
 
@@ -29,5 +30,12 @@ fun NoteDetailCompose(
 @Preview
 fun NoteScreenPreview()
 {
-    NoteDetailCompose()
+    NoteDetailCompose(
+        NoteDetailViewModel(
+            stringProvider = object: StringProvider {
+                override fun getString(id: Int): String = ""
+            },
+            id = -1
+        )
+    )
 }

@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.org.h2.util.JdbcUtils.serializer
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -5,6 +7,7 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlin.plugin.serialization")
     alias(libs.plugins.compose.compiler)
 }
 
