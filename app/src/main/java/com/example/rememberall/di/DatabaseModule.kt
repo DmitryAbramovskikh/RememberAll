@@ -6,16 +6,17 @@ import com.example.rememberall.repository.room.dao.DatabaseDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule
+class DatabaseModule()
 {
     @Provides
     @Singleton
-    fun provideDatabaseDAO(context: Context): DatabaseDAO =
+    fun provideDatabaseDAO(@ApplicationContext context: Context): DatabaseDAO =
         Room
         .databaseBuilder(context, DatabaseDAO::class.java, "Database.sqlite")
         .fallbackToDestructiveMigration()
