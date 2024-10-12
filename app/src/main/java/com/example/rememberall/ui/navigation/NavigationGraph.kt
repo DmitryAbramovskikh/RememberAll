@@ -25,8 +25,10 @@ fun AppNavigationHost(navController: NavHostController, modifier: Modifier = Mod
 
         composable<NoteDetailScreen> { backStackEntry ->
             val noteDetailScreen = backStackEntry.toRoute<NoteDetailScreen>()
-            val noteViewModel = hiltViewModel<NoteDetailViewModel, NoteDetailViewModel.Factory> { it.create(noteDetailScreen.id) }
-            NoteDetailCompose(noteViewModel)
+            val noteViewModel = hiltViewModel<NoteDetailViewModel, NoteDetailViewModel.Factory> {
+                it.create(noteDetailScreen.id)
+            }
+            NoteDetailCompose(noteViewModel, onSaveNote = { navController.navigate(MainScreen) })
         }
 
         composable<ImageScreen>{

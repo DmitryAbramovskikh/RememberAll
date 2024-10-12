@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.rememberall.ui.notes.CellNote
 import com.example.rememberall.ui.notes.NotesViewModel
 
@@ -23,9 +24,7 @@ fun MainScreen(
     viewModel: NotesViewModel = hiltViewModel()
 )
 {
-    val notes = remember {
-        mutableStateOf(viewModel.notes.value ?: listOf())
-    }
+    val notes = viewModel.notes.collectAsStateWithLifecycle(listOf())
 
     Box(Modifier.fillMaxSize())
     {

@@ -1,41 +1,51 @@
 package com.example.rememberall.ui.note
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.rememberall.ui.base.StringProvider
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun NoteDetailCompose(
     viewModel: NoteDetailViewModel,
+    onSaveNote: () -> Unit = { },
     modifier: Modifier = Modifier
 )
 {
-    val title by remember { viewModel.title }
-
-    OutlinedTextField(
-        value = title,
-        onValueChange = { viewModel.title.value = it },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(4.dp, 16.dp)
-    )
-}
-
-@Composable
-@Preview
-fun NoteScreenPreview()
-{
-    NoteDetailCompose(
-        NoteDetailViewModel(
-            stringProvider = object: StringProvider {
-                override fun getString(id: Int): String = ""
-            },
-            id = -1
+    Column(modifier = modifier) {
+        OutlinedTextField(
+            value = viewModel.title,
+            onValueChange = { viewModel.onNoteEdit(title = it) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(4.dp, 16.dp)
         )
-    )
+
+        OutlinedTextField(
+            value = viewModel.text,
+            onValueChange = { viewModel.onNoteEdit(text = it) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(4.dp, 16.dp)
+        )
+
+        if (viewModel.isChanged) {
+            Button(
+                onClick = {
+                    viewModel.onSave()
+                    onSaveNote()
+                },
+                modifier = Modifier
+                    .padding(16.dp, 8.dp)
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+            ) {
+                Text("Coхранить")
+            }
+        }
+    }
+
 }

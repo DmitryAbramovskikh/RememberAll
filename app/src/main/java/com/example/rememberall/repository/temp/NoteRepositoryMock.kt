@@ -1,5 +1,6 @@
 package com.example.rememberall.repository.temp
 
+import android.util.Log
 import com.example.rememberall.model.NoteRepositoryInterface
 import com.example.rememberall.model.entity.Note
 import com.example.rememberall.repository.entity.NoteInterface
@@ -29,6 +30,9 @@ object NoteRepositoryMock: NoteRepositoryInterface
 
     override fun insert(note: Note)
     {
+        Log.d("SIMPLETAG", "inserted title: ${note.title}")
+        if (notes.firstOrNull { it.id == note.id } != null)
+            notes.removeIf { it.id == note.id }
         notes.add(NoteDB(note))
     }
 
