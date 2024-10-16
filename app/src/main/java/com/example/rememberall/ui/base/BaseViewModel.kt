@@ -5,8 +5,10 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-open class BaseViewModel: ViewModel()
+abstract class BaseViewModel: ViewModel()
 {
+    abstract fun getTitle(): String
+
     init
     {
         viewModelScope

@@ -1,5 +1,3 @@
-import org.gradle.internal.impldep.org.h2.util.JdbcUtils.serializer
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")

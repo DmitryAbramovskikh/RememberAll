@@ -13,4 +13,6 @@ class NotesViewModel @Inject constructor(private val noteService: NoteService): 
     val notes = noteService
         .fetchAll()
         .map { it.map { note: Note -> NoteVM(note) } }
+
+    override fun getTitle(): String = "Заметки"
 }

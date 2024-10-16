@@ -50,8 +50,9 @@ fun AppHost(navController: NavHostController) {
             )
         },
         modifier = Modifier
-        .fillMaxSize()
-        .background(Color.White)
+            .background(Color.LightGray)
+            .fillMaxSize()
+            .background(Color.White)
     ) { padding ->
         AppNavigationHost(
             navController = navController,

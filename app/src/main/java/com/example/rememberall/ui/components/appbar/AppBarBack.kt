@@ -21,9 +21,9 @@ fun AppBarBack(
     navController: NavHostController
 )
 {
-    val titleName = remember { mutableStateOf(navController.currentBackStackEntry?.destination?.label ?: "App") }
+    val titleName = navController.currentBackStackEntry?.destination?.label ?: "App"
 
-    TopAppBar(title = { Text(text = titleName.value as String ) }, modifier, navigationIcon = {
+    TopAppBar(title = { Text(text = titleName as String ) }, modifier, navigationIcon = {
         if (navController.previousBackStackEntry != null) {
             IconButton(onClick = { navController.navigateUp() }) {
                 Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack,

@@ -10,6 +10,6 @@ import javax.inject.Inject
 @HiltViewModel
 class ImageViewModel @Inject constructor(stringProvider: StringProvider): BaseViewModel() {
 
-    val title = mutableStateOf(stringProvider.getString(R.string.image_title) ?: "" )
+    override fun getTitle(): String = "Картинка"
 
 }

@@ -42,6 +42,8 @@ class NoteDetailViewModel @AssistedInject constructor(stringProvider: StringProv
             }
     }
 
+    override fun getTitle(): String = "Заметка"
+
     fun onNoteEdit(title: String? = null, text: String? = null) {
         isChanged = true
 
