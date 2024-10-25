@@ -1,5 +1,6 @@
 package com.example.rememberall.ui.note
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
@@ -42,7 +43,7 @@ class NoteDetailViewModel @AssistedInject constructor(stringProvider: StringProv
             }
     }
 
-    override fun getTitle(): String = "Заметка"
+    override fun getTitle() = mutableStateOf("Заметка")
 
     fun onNoteEdit(title: String? = null, text: String? = null) {
         isChanged = true
