@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
@@ -39,25 +42,10 @@ class MainActivity : ComponentActivity()
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppHost(navController: NavHostController) {
-    Scaffold(
-        topBar = {
-            AppBarBack(
-                navController = navController,
-                colors = topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary
-                )
-            )
-        },
+
+    AppNavigationHost(
+        navController = navController,
         modifier = Modifier
-        .fillMaxSize()
-        .background(Color.White)
-    ) { padding ->
-        AppNavigationHost(
-            navController = navController,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-        )
-    }
+            .fillMaxSize()
+    )
 }

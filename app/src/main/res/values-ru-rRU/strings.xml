@@ -4,6 +4,10 @@
 
     <!-- Main -->
     <string name="main_notes">Заметки</string>
+
     <string name="note_detail_title">Редактировать заметку</string>
+    <string name="note_detail_created">создана: </string>
+    <string name="note_detail_edited">изменена: </string>
+
     <string name="image_title">Изображение</string>
 </resources>

@@ -1,44 +1,67 @@
 package com.example.rememberall.ui.notes
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.rememberall.R
+import androidx.compose.ui.unit.sp
+import java.util.Date
 
 @Composable
-fun CellNote(
+fun CellNoteComposable(
     note: NoteVM,
     onClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Card(
         modifier = modifier
-            .background(colorResource(id = R.color.secondaryLight))
             .fillMaxWidth()
-            .padding(16.dp, 8.dp)
-            .clickable { onClick(note.id) }
+            .padding(16.dp, 4.dp)
+            .clickable { onClick(note.id) },
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White,
+            disabledContainerColor = Color.LightGray
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
-        Text(
-            text = note.title,
+        val dateFontSize by remember { mutableStateOf(11.sp) }
+        val contentFontSize by remember { mutableStateOf(13.sp) }
+        Column(modifier = Modifier.padding(8.dp)) {
+            Text(
+                text = note.title,
+                fontSize = contentFontSize,
+                color = Color.Black
+            )
+            Text(
+                text = note.text,
+                fontSize = contentFontSize,
+                color = Color.DarkGray
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Absolute.Right) {
+                Text( text = note.createdText, fontSize = dateFontSize, color = Color.LightGray )
+                Text( text = note.editedText, fontSize = dateFontSize, modifier = modifier.padding(8.dp, 0.dp), color = Color.LightGray )
+            }
 
-        )
-        Text( text = note.text )
-        Text( text = note.created )
-        Text( text = note.edited )
+        }
     }
 }
 
 @Preview
 @Composable
 fun CellNotePreview() {
-    CellNote(
-        NoteVM(12, "Заметка", "Содержание заметки", "12.10.2023", "10.09.2024"),
+    CellNoteComposable(
+        NoteVM(12, "Заметка", "Содержание заметки", Date(), Date()),
         { }
     )
 }

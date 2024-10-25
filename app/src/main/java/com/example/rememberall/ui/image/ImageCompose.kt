@@ -9,7 +9,5 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun ImageCompose()
 {
     val viewModel: ImageViewModel = hiltViewModel()
-    val title by remember { viewModel.title }
-
-
+    val title by viewModel.getTitle()
 }

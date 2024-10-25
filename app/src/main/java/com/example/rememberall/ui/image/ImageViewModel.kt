@@ -1,5 +1,6 @@
 package com.example.rememberall.ui.image
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import com.example.rememberall.R
 import com.example.rememberall.ui.base.BaseViewModel
@@ -10,6 +11,6 @@ import javax.inject.Inject
 @HiltViewModel
 class ImageViewModel @Inject constructor(stringProvider: StringProvider): BaseViewModel() {
 
-    val title = mutableStateOf(stringProvider.getString(R.string.image_title) ?: "" )
+    override fun getTitle(): MutableState<String> = mutableStateOf("Картинка")
 
 }
