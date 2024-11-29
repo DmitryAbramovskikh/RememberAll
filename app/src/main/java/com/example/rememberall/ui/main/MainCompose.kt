@@ -34,7 +34,7 @@ fun MainScreen(
         ) {
             items(notes)
             {
-                CellNoteComposable(note = it, onClick = { id -> onClickShowDetail(id) })
+                CellNoteComposable(note = it, onClick = { id -> onClickShowDetail(id) }, onDelete = { id -> viewModel.onDelete(id) })
             }
         }
 

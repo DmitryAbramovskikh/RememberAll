@@ -9,5 +9,7 @@ interface NoteService
 
     fun getById(id: Int): Flow<Note?>
 
-    fun save(note: Note)
+    fun save(note: Note): Flow<Boolean>
+
+    fun delete(id: Int): Flow<Boolean>
 }

@@ -9,9 +9,9 @@ const val NOTES_TABLE = "notes"
 
 @Entity(tableName = NOTES_TABLE)
 data class NoteDB(
-    @PrimaryKey
+    @PrimaryKey(true)
     @ColumnInfo("id")
-    override val id: Int,
+    override val id: Int?,
     @ColumnInfo("title")
     override val title: String,
     @ColumnInfo("text")
