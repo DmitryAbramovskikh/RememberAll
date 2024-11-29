@@ -1,4 +1,4 @@
-package com.example.rememberall.repository.temp
+package com.example.rememberall.repository.mockrepos
 
 import android.util.Log
 import com.example.rememberall.model.NoteRepositoryInterface
@@ -36,6 +36,7 @@ object NoteRepositoryMock: NoteRepositoryInterface
         notes.add(NoteDB(note))
     }
 
+    override fun delete(note: NoteInterface) { }
 
     private val notes = mutableListOf(
         NoteDB(0, "Оценки", "Оценки в наше веремя очень важны.", Date(Date().time - 10000000L), Date()),

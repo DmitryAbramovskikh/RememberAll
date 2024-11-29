@@ -1,6 +1,7 @@
 package com.example.rememberall.ui.notes
 
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.viewModelScope
 import com.example.rememberall.model.entity.Note
 import com.example.rememberall.model.services.NoteService
 import com.example.rememberall.ui.base.BaseViewModel
@@ -9,6 +10,7 @@ import com.example.rememberall.ui.note.NoteDetailViewModel
 import dagger.assisted.AssistedFactory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,4 +22,6 @@ class NotesViewModel @Inject constructor(private val noteService: NoteService,
         .map { it.map { note: Note -> NoteVM(note, parent = this) } }
 
     override fun getTitle() = mutableStateOf("Заметки")
+
+    fun onDelete(id: Int) = viewModelScope.launch { noteService.delete(id).collect{} }
 }

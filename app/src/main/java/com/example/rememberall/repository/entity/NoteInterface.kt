@@ -4,7 +4,7 @@ import java.util.Date
 
 interface NoteInterface
 {
-    val id: Int
+    val id: Int?
     val title: String
     val text: String
     val created: Date

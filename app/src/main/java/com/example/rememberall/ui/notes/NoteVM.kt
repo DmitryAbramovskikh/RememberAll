@@ -10,7 +10,7 @@ import com.example.rememberall.ui.base.BaseViewModel
 import com.example.rememberall.ui.local.toReadableDate
 import java.util.Date
 
-class NoteVM(val id: Int, val title: String, val text: String, val createDate: Date, val editDate: Date, parent: BaseViewModel? = null): BaseVM(parent)
+class NoteVM(val id: Int?, val title: String, val text: String, val createDate: Date, val editDate: Date, parent: BaseViewModel? = null): BaseVM(parent)
 {
     var createdText by mutableStateOf("")
     var editedText by mutableStateOf("")

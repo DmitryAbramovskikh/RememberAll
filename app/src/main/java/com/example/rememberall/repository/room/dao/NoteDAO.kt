@@ -16,4 +16,7 @@ abstract class NoteDAO
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(entity: NoteDB)
+
+    @Delete
+    abstract fun delete(entity: NoteDB)
 }
