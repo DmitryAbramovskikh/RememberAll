@@ -11,7 +11,7 @@ plugins {
 
 android {
     namespace = "com.example.rememberall"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.rememberall"
@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     implementation (libs.runtime.livedata)
+    implementation(libs.compose.constraint)
 
     //Navigation
     implementation(libs.navigation.compose)

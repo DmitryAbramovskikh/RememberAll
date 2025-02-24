@@ -12,8 +12,7 @@ import java.util.Date
 
 class NoteVM(val id: Int?, val title: String, val text: String, val createDate: Date, val editDate: Date, parent: BaseViewModel? = null): BaseVM(parent)
 {
-    var createdText by mutableStateOf("")
-    var editedText by mutableStateOf("")
+    var lastUpdateText by mutableStateOf("")
 
     constructor(note: Note, parent: BaseViewModel? = null): this (
         note.id,
@@ -26,7 +25,6 @@ class NoteVM(val id: Int?, val title: String, val text: String, val createDate: 
 
     init
     {
-        createdText = getString(R.string.note_detail_created) + createDate.toReadableDate()
-        editedText = getString(R.string.note_detail_edited) + editDate.toReadableDate()
+        lastUpdateText = if (createDate == editDate) getString(R.string.note_detail_created) + createDate.toReadableDate() else getString(R.string.note_detail_edited) + editDate.toReadableDate()
     }
 }

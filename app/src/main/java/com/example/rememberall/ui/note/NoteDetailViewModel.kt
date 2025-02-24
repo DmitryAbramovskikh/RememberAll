@@ -54,13 +54,15 @@ class NoteDetailViewModel @AssistedInject constructor(stringProvider: StringProv
         text?.let {
             this.text = it
         }
+
     }
 
     fun onSave()
     {
+
         viewModelScope.launch {
             if (!isChanged) return@launch
-                noteService.save(Note(id, title, text, createDate, lastEditedDate)).collect{}
+                noteService.save(Note(id, title, text, createDate, Date())).collect{}
         }
     }
 }

@@ -2,7 +2,9 @@ package com.example.rememberall.ui.navigation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -19,13 +21,16 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.example.rememberall.R
 import com.example.rememberall.ui.components.appbar.AppBarBack
 import com.example.rememberall.ui.image.ImageCompose
+import com.example.rememberall.ui.main.MainBottomBar
 import com.example.rememberall.ui.main.MainScreen
 import com.example.rememberall.ui.note.NoteDetailCompose
 import com.example.rememberall.ui.note.NoteDetailViewModel
+import com.example.rememberall.ui.notes.NotesScreen
 
 class ScaffoldState(val title: String)
 
@@ -34,6 +39,8 @@ class ScaffoldState(val title: String)
 fun AppNavigationHost(navController: NavHostController, modifier: Modifier = Modifier)
 {
     var scaffoldState by remember { mutableStateOf(ScaffoldState("App")) }
+
+    val buttonVisible = remember { mutableStateOf(true) }
 
     Scaffold(
         topBar = {
@@ -46,6 +53,12 @@ fun AppNavigationHost(navController: NavHostController, modifier: Modifier = Mod
                 )
             )
         },
+        bottomBar = {
+            MainBottomBar(
+                modifier = Modifier,
+                navController = navController,
+                state = buttonVisible)
+        },
         modifier = Modifier
             .background(Color.LightGray)
             .fillMaxSize()
@@ -53,9 +66,15 @@ fun AppNavigationHost(navController: NavHostController, modifier: Modifier = Mod
     ) { padding ->
         NavHost(navController = navController, startDestination = MainScreen, modifier = modifier.padding(padding)) {
 
-            composable<MainScreen> {
+            composable<MainScreen>(
+            ) {
                 scaffoldState = ScaffoldState(stringResource(R.string.main_notes))
-                MainScreen(
+                MainScreen( )
+            }
+
+            composable<NotesScreen> {
+                scaffoldState = ScaffoldState(stringResource(R.string.notes_title))
+                NotesScreen(
                     onClickAddNew = { navController.navigate(NoteDetailScreen(-1)) },
                     onClickShowDetail = { navController.navigate(NoteDetailScreen(it)) }
                 )

@@ -18,42 +18,15 @@ import com.example.rememberall.ui.notes.NotesViewModel
 
 @Composable
 fun MainScreen(
-    onClickAddNew: () -> Unit,
-    onClickShowDetail: (Int) -> Unit = {},
-    onCLickShowImage: () -> Unit = {},
-    viewModel: NotesViewModel = hiltViewModel()
+    onCLickShowImage: () -> Unit = {}
 )
 {
-    val notes by viewModel.notes.collectAsStateWithLifecycle(listOf())
 
-    Box(Modifier.fillMaxSize())
-    {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-        ) {
-            items(notes)
-            {
-                CellNoteComposable(note = it, onClick = { id -> onClickShowDetail(id) }, onDelete = { id -> viewModel.onDelete(id) })
-            }
-        }
-
-        FloatingActionButton(
-            onClick = onClickAddNew,
-            modifier = Modifier
-                .padding(32.dp, 32.dp)
-                .align(Alignment.BottomEnd),
-        ) {
-            Text(text = "Кнопка",
-                Modifier
-                    .padding(16.dp, 8.dp))
-        }
-    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview()
 {
-    MainScreen(onClickAddNew = {})
+    MainScreen()
 }

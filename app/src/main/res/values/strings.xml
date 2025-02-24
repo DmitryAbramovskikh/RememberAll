@@ -2,12 +2,15 @@
     <string name="app_name">RememberAll</string>
 
     <!-- Main -->
-    <string name="main_notes">Notes</string>
+    <string name="main_notes">Main</string>
 
     <!-- Note Detail -->
     <string name="note_detail_title">Edit note</string>
     <string name="note_detail_created">created: </string>
     <string name="note_detail_edited">edited: </string>
+
+    <!-- Notes -->
+    <string name="notes_title">Notes</string>
 
     <!-- Image -->
     <string name="image_title">Image</string>
