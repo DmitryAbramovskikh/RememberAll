@@ -1,5 +1,6 @@
 package com.example.rememberall.ui.notes
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.rememberall.model.entity.Note
 import com.example.rememberall.model.services.NoteService
@@ -31,10 +32,12 @@ class NotesViewModel @Inject constructor(private val noteService: NoteService,
     {
         setState { copy(isLoading = true) }
 
+        Log.d("SIMPLETAG", "")
+
         noteService
             .delete(noteId)
             .collect {
-                setState { copy(isLoading = false) }
+                fetchNotes()
             }
     }
 

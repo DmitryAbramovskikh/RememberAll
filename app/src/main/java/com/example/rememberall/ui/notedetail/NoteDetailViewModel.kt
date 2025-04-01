@@ -69,8 +69,7 @@ class NoteDetailViewModel @AssistedInject constructor(private val noteService: N
 
         noteService
             .save(Note(id, title, text, createDate, Date()))
-
-        setEffect(NoteDetailContract.Effect.Back)
+            .collect {  setEffect(NoteDetailContract.Effect.Back)  }
     }
 }
 
