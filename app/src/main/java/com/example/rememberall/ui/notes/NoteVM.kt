@@ -10,11 +10,11 @@ import com.example.rememberall.ui.base.BaseViewModel
 import com.example.rememberall.ui.local.toReadableDate
 import java.util.Date
 
-class NoteVM(val id: Int?, val title: String, val text: String, val createDate: Date, val editDate: Date, parent: BaseViewModel? = null): BaseVM(parent)
+class NoteVM(val id: Int?, val title: String, val text: String, val createDate: Date, val editDate: Date, parent: BaseViewModel<*,*,*>? = null): BaseVM(parent)
 {
     var lastUpdateText by mutableStateOf("")
 
-    constructor(note: Note, parent: BaseViewModel? = null): this (
+    constructor(note: Note, parent: BaseViewModel<*,*,*>? = null): this (
         note.id,
         note.title,
         note.text,

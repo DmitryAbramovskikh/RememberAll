@@ -1,4 +1,4 @@
-package com.example.rememberall.ui.note
+package com.example.rememberall.ui.notedetail
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -11,6 +11,7 @@ import androidx.compose.ui.node.DrawModifierNode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.rememberall.ui.notedetail.NoteDetailScreen
 
 private class CircleNode(var color: Color) : DrawModifierNode, Modifier.Node()
 {
@@ -20,41 +21,36 @@ private class CircleNode(var color: Color) : DrawModifierNode, Modifier.Node()
 }
 
 @Composable
-fun NoteDetailCompose(
-    viewModel: NoteDetailViewModel,
-    onSaveNote: () -> Unit = { },
-    modifier: Modifier = Modifier
-)
+fun NoteDetailScreen(state: NoteDetailContract.State,
+                     intentHandler: (NoteDetailContract.Intent) -> Unit,
+                     effectHandler: (NoteDetailContract.Effect) -> Unit)
 {
     Box()
     {
-        Column(modifier = modifier) {
+        Column(modifier = Modifier) {
             OutlinedTextField(
-                value = viewModel.title,
-                onValueChange = { viewModel.onNoteEdit(title = it) },
+                value = state.title,
+                onValueChange = { intentHandler(NoteDetailContract.Intent.ChangeTitle(it)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
                     .padding(4.dp, 16.dp)
             )
 
-            val textPaddingBottom = if (!viewModel.isChanged) 16.dp else 64.dp
+            val textPaddingBottom = if (!state.isChanged) 16.dp else 64.dp
 
             OutlinedTextField(
-                value = viewModel.text,
-                onValueChange = { viewModel.onNoteEdit(text = it) },
+                value = state.text,
+                onValueChange = { intentHandler(NoteDetailContract.Intent.ChangeText(it)) },
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(4.dp, 0.dp, 4.dp, textPaddingBottom)
             )
         }
 
-        if (viewModel.isChanged) {
+        if (state.isChanged) {
             Button(
-                onClick = {
-                    viewModel.onSave()
-                    onSaveNote()
-                },
+                onClick = { intentHandler(NoteDetailContract.Intent.Save) },
                 modifier = Modifier
                     .padding(16.dp, 8.dp)
                     .fillMaxWidth()
@@ -73,5 +69,5 @@ fun NoteDetailCompose(
 @Composable
 fun PreviewNoteDetailCompose()
 {
-    NoteDetailCompose(hiltViewModel())
+    NoteDetailScreen (NoteDetailContract.State(), {}, {})
 }

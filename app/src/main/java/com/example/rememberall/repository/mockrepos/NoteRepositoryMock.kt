@@ -28,7 +28,7 @@ object NoteRepositoryMock: NoteRepositoryInterface
             emit(notesF)
         }
 
-    override fun insert(note: Note)
+    override suspend fun insert(note: Note)
     {
         Log.d("SIMPLETAG", "inserted title: ${note.title}")
         if (notes.firstOrNull { it.id == note.id } != null)
@@ -36,7 +36,7 @@ object NoteRepositoryMock: NoteRepositoryInterface
         notes.add(NoteDB(note))
     }
 
-    override fun delete(note: NoteInterface) { }
+    override suspend fun delete(note: NoteInterface) { }
 
     private val notes = mutableListOf(
         NoteDB(0, "Оценки", "Оценки в наше веремя очень важны.", Date(Date().time - 10000000L), Date()),

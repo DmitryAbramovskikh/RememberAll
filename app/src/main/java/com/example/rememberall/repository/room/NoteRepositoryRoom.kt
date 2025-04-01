@@ -15,13 +15,13 @@ class NoteRepositoryRoom @Inject constructor(databaseDAO: DatabaseDAO): NoteRepo
 {
     private val noteDAO = databaseDAO.getNoteDAO()
 
-    override fun fetchAll() = noteDAO.fetchAll().flowOn(Dispatchers.IO)
+    override fun fetchAll() = noteDAO.fetchAll()
 
     override fun getById(id: Int) = noteDAO.fetchByIds(intArrayOf(id)).map { (it.firstOrNull()) }
 
     override fun getByIds(ids: List<Int>) = noteDAO.fetchByIds(ids.toIntArray())
 
-    override fun insert(note: Note) { noteDAO.insert(NoteDB(note)) }
+    override suspend fun insert(note: Note) { noteDAO.insert(NoteDB(note)) }
 
-    override fun delete(note: NoteInterface) { noteDAO.delete(note as NoteDB) }
+    override suspend fun delete(note: NoteInterface) { noteDAO.delete(note as NoteDB) }
 }

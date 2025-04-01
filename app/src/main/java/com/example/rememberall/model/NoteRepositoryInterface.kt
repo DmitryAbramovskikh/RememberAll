@@ -12,7 +12,7 @@ interface NoteRepositoryInterface
 
     fun getByIds(ids: List<Int>): Flow<List<NoteInterface>>
 
-    fun insert(note: Note)
+    suspend fun insert(note: Note)
 
-    fun delete(note: NoteInterface)
+    suspend fun delete(note: NoteInterface)
 }

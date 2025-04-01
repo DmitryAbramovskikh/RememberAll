@@ -10,24 +10,32 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.rememberall.ui.theme.md_theme_light_onPrimaryContainer
 import com.example.rememberall.ui.theme.md_theme_light_onTertiaryContainer
 import com.example.rememberall.ui.theme.md_theme_light_tertiaryContainer
+import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun NotesScreen(
-    onClickAddNew: () -> Unit,
-    onClickShowDetail: (Int) -> Unit = {},
-    viewModel: NotesViewModel = hiltViewModel()
+    state: NotesContract.ViewState,
+    effectListener: (NotesContract.Effect) -> Unit,
+    intentListener: (NotesContract.Intent) -> Unit
 ) {
-    val notes by viewModel.notes.collectAsStateWithLifecycle(listOf())
+    when {
+        state.isLoading == true -> {}
+        state.notes.isNotEmpty() -> { NotesList(intentListener, effectListener, state.notes) }
+        else -> { NotesEmptyList(effectListener) }
+    }
+}
 
+@Composable
+private fun NotesList(intentListener: (NotesContract.Intent) -> Unit,
+                      effectListener: (NotesContract.Effect) -> Unit,
+                      notes: List<NoteVM>)
+{
     Box(Modifier
         .fillMaxSize())
     {
@@ -38,22 +46,39 @@ fun NotesScreen(
         ) {
             items(notes)
             {
-                CellNoteComposable(note = it, onClick = { id -> onClickShowDetail(id) }, onDelete = { id -> viewModel.onDelete(id) })
+                CellNoteComposable(
+                    note = it,
+                    onClick = { id -> effectListener(NotesContract.Effect.ShowDetail(id)) },
+                    onDelete = { id -> intentListener(NotesContract.Intent.Delete(id)) })
             }
         }
 
-        FloatingActionButton(
-            onClick = onClickAddNew,
-            modifier = Modifier
-                .padding(32.dp, 32.dp)
-                .align(Alignment.BottomEnd),
-            containerColor = md_theme_light_tertiaryContainer
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Add,
-                contentDescription = "",
-                modifier = Modifier,
-                tint = md_theme_light_onTertiaryContainer)
-        }
+        AddNewButton(modifier = Modifier.align(Alignment.BottomEnd), effectListener)
+    }
+}
+
+@Composable
+private fun NotesEmptyList(effectListener: (NotesContract.Effect) -> Unit)
+{
+    Box()
+    {
+        AddNewButton(modifier = Modifier.align(Alignment.BottomEnd), effectListener)
+    }
+}
+
+@Composable
+private fun AddNewButton(modifier: Modifier,
+                         effectListener: (NotesContract.Effect) -> Unit)
+{
+    FloatingActionButton(
+        onClick = { effectListener(NotesContract.Effect.AddNew) },
+        modifier = modifier.padding(32.dp, 32.dp),
+        containerColor = md_theme_light_tertiaryContainer
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Add,
+            contentDescription = "",
+            modifier = Modifier,
+            tint = md_theme_light_onTertiaryContainer)
     }
 }

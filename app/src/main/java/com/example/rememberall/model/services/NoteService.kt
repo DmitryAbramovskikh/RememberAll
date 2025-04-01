@@ -5,11 +5,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface NoteService
 {
-    fun fetchAll(): Flow<List<Note>>
+    suspend fun fetchAll(): Flow<List<Note>>
 
-    fun getById(id: Int): Flow<Note?>
+    suspend fun getById(id: Int): Flow<Note?>
 
-    fun save(note: Note): Flow<Boolean>
+    suspend fun save(note: Note): Flow<Boolean>
 
-    fun delete(id: Int): Flow<Boolean>
+    suspend fun delete(id: Int): Flow<Boolean>
 }

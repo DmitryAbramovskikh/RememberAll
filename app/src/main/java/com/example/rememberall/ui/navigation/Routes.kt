@@ -2,13 +2,13 @@ package com.example.rememberall.ui.navigation
 import kotlinx.serialization.Serializable
 
 @Serializable
-object MainScreen
+object MainRoute
 
 @Serializable
-object NotesScreen
+object NotesRoute
 
 @Serializable
-data class NoteDetailScreen(val id: Int)
+data class NoteDetailRoute(val id: Int = -1)
 
 @Serializable
-object ImageScreen
+object ImageRoute

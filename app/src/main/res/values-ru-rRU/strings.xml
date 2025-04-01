@@ -11,4 +11,5 @@
 
     <string name="notes_title">Заметки</string>
     <string name="image_title">Изображение</string>
+    <string name="main_daily_note">Ежедневная заметка</string>
 </resources>

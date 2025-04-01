@@ -63,6 +63,7 @@ dependencies {
     //Dagger/Hilt
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.junit.ktx)
     kapt(libs.hilt.compiler)
 
     //Compose

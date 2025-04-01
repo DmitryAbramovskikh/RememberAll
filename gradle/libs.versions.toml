@@ -1,7 +1,7 @@
 [versions]
-activityCompose = "1.10.0"
-composeBom = "2025.02.00"
-composeConstraint = "1.0.1"
+activityCompose = "1.10.1"
+composeBom = "2025.03.01"
+composeConstraint = "1.1.1"
 espressoCore = "3.6.1"
 hiltAndroid = "2.51.1"
 hiltNavigationCompose = "1.2.0"
@@ -13,13 +13,14 @@ kotlinxSerialization = "1.6.21"
 ktx = "2.0.0"
 kotlin = "2.0.0"
 lifecycleRuntimeKtx = "2.8.7"
-navigationCompose = "2.8.7"
-navigationFragmentKtx = "2.8.7"
-navigationTesting = "2.8.7"
+navigationCompose = "2.8.9"
+navigationFragmentKtx = "2.8.9"
+navigationTesting = "2.8.9"
 roomCompiler = "2.6.1"
 roomKtx = "2.6.1"
 roomRuntime = "2.6.1"
 runtimeLivedata = "1.7.8"
+junitKtx = "1.2.1"
 
 [libraries]
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
@@ -49,6 +50,7 @@ ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
 
 [plugins]
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

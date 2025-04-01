@@ -6,7 +6,6 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,14 +16,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.rememberall.ui.main.navigation.TopLevelRoute
-import com.example.rememberall.ui.navigation.MainScreen
-import com.example.rememberall.ui.navigation.NotesScreen
+import com.example.rememberall.ui.main.bottomnavigation.TopLevelBottomRoute
+import com.example.rememberall.ui.navigation.MainRoute
+import com.example.rememberall.ui.navigation.NotesRoute
 import com.example.rememberall.ui.theme.md_theme_dark_primaryContainer
 
-val topLevelRoutes = listOf(
-    TopLevelRoute("Главный", MainScreen, "MainScreen", Icons.Outlined.Home),
-    TopLevelRoute("Заметки", NotesScreen, "NotesScreen", Icons.AutoMirrored.Outlined.List)
+val topLevelBottomRoutes = listOf(
+    TopLevelBottomRoute("Главный", MainRoute, "MainScreen", Icons.Outlined.Home),
+    TopLevelBottomRoute("Заметки", NotesRoute, "NotesScreen", Icons.AutoMirrored.Outlined.List)
 )
 
 @Composable
@@ -36,7 +35,7 @@ fun MainBottomBar(modifier: Modifier, navController: NavHostController, state: M
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 
-        topLevelRoutes.forEach { route ->
+        topLevelBottomRoutes.forEach { route ->
             NavigationBarItem(
                 label = {
                     Text(text = route.name)
