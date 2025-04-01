@@ -36,7 +36,7 @@ object NoteRepositoryMock: NoteRepositoryInterface
         notes.add(NoteDB(note))
     }
 
-    override suspend fun delete(note: NoteInterface) { }
+    override suspend fun delete(noteId: Int) = flow { emit(true) }
 
     private val notes = mutableListOf(
         NoteDB(0, "Оценки", "Оценки в наше веремя очень важны.", Date(Date().time - 10000000L), Date()),

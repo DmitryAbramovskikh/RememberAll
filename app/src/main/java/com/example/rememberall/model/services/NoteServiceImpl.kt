@@ -31,11 +31,5 @@ class NoteServiceImpl @Inject constructor(private val offline: NoteRepositoryInt
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun delete(id: Int): Flow<Boolean> =
-        offline.getById(id)
-            .transform {
-                it?.let { offline.delete(it) }
-                emit(true)
-            }
-            .flowOn(Dispatchers.IO)
+    override suspend fun delete(id: Int): Flow<Boolean> = offline.delete(id)
 }

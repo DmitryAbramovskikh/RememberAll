@@ -14,5 +14,5 @@ interface NoteRepositoryInterface
 
     suspend fun insert(note: Note)
 
-    suspend fun delete(note: NoteInterface)
+    suspend fun delete(noteId: Int): Flow<Boolean>
 }

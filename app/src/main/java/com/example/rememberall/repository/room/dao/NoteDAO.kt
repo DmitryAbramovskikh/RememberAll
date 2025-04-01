@@ -20,6 +20,6 @@ interface NoteDAO
     @Update
     fun update(entity: NoteDB)
 
-    @Delete
-    suspend fun delete(entity: NoteDB)
+    @Query("DELETE FROM $NOTES_TABLE WHERE id=:id")
+    suspend fun delete(id: Int)
 }
