@@ -10,13 +10,12 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.rememberall.ui.base.components.LoadingFullscreenIndicator
 import com.example.rememberall.ui.theme.md_theme_light_onTertiaryContainer
 import com.example.rememberall.ui.theme.md_theme_light_tertiaryContainer
-import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun NotesScreen(
@@ -25,7 +24,7 @@ fun NotesScreen(
     intentListener: (NotesContract.Intent) -> Unit
 ) {
     when {
-        state.isLoading == true -> {}
+        state.isLoading == true -> { LoadingFullscreenIndicator() }
         state.notes.isNotEmpty() -> { NotesList(intentListener, effectListener, state.notes) }
         else -> { NotesEmptyList(effectListener) }
     }

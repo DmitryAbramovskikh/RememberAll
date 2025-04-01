@@ -7,6 +7,7 @@ import com.example.rememberall.model.services.NoteService
 import com.example.rememberall.ui.base.BaseViewModel
 import com.example.rememberall.ui.base.StringProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -32,8 +33,6 @@ class NotesViewModel @Inject constructor(private val noteService: NoteService,
     {
         setState { copy(isLoading = true) }
 
-        Log.d("SIMPLETAG", "")
-
         noteService
             .delete(noteId)
             .collect {
@@ -42,6 +41,7 @@ class NotesViewModel @Inject constructor(private val noteService: NoteService,
     }
 
     private fun fetchNotes() = viewModelScope.launch {
+        setState { copy(isLoading = true) }
         noteService.fetchAll()
             .map { it.map { note: Note -> NoteVM(note, parent = this@NotesViewModel) } }
             .collect {
