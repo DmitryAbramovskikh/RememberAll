@@ -8,14 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.rememberall.ui.base.BaseContract
 import com.example.rememberall.ui.base.BaseViewModel
-import com.example.rememberall.ui.base.ViewError
 import com.example.rememberall.ui.theme.md_theme_light_error
 import com.example.rememberall.ui.theme.md_theme_light_errorContainer
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 @Composable
 inline fun <S: BaseContract.ViewUIState, E: BaseContract.ViewSideEffect, I: BaseContract.ViewIntent, reified VM: BaseViewModel<S,I,E>>
@@ -29,10 +30,11 @@ inline fun <S: BaseContract.ViewUIState, E: BaseContract.ViewSideEffect, I: Base
 
     content.invoke(viewModel.state.value, viewModel.effect, effectListener, intentListener)
 
-    val error = viewModel.error.collectAsState(ViewError()).value
-    LaunchedEffect(error) {
-        if (error.message.isNotEmpty())
-            snackBarHostState.showSnackbar(error.message)
+    LaunchedEffect(true) {
+        viewModel.error.collect {
+            if (it.message.isNotEmpty())
+                snackBarHostState.showSnackbar(it.message)
+        }
     }
     SnackbarErrorHost(snackBarHostState)
 }
