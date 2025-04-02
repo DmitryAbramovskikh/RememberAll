@@ -61,8 +61,6 @@ fun NoteDetailScreen(state: NoteDetailContract.State,
             }
         }
     }
-
-
 }
 
 @Preview

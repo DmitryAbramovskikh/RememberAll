@@ -1,21 +1,19 @@
 package com.example.rememberall.ui.notes
 
-import com.example.rememberall.ui.base.ViewIntent
-import com.example.rememberall.ui.base.ViewSideEffect
-import com.example.rememberall.ui.base.ViewUIState
+import com.example.rememberall.ui.base.BaseContract
 
-class NotesContract {
+class NotesContract: BaseContract {
 
-    data class ViewState(
+    data class State(
         val isLoading: Boolean,
-        val notes: List<NoteVM> = listOf()): ViewUIState
+        val notes: List<NoteVM> = listOf()): BaseContract.ViewUIState
 
-    sealed interface Intent: ViewIntent
+    sealed interface Intent: BaseContract.ViewIntent
     {
         class Delete(val id: Int): Intent
     }
 
-    sealed interface Effect: ViewSideEffect
+    sealed interface Effect: BaseContract.ViewSideEffect
     {
         class ShowDetail(val id: Int): Effect
         object AddNew: Effect

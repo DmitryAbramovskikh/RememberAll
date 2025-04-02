@@ -19,7 +19,7 @@ import com.example.rememberall.ui.theme.md_theme_light_tertiaryContainer
 
 @Composable
 fun NotesScreen(
-    state: NotesContract.ViewState,
+    state: NotesContract.State,
     effectListener: (NotesContract.Effect) -> Unit,
     intentListener: (NotesContract.Intent) -> Unit
 ) {
