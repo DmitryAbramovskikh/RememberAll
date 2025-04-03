@@ -1,6 +1,5 @@
 package com.example.rememberall.ui.components.appbar
 
-import android.icu.text.CaseMap.Title
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material.icons.Icons
@@ -23,8 +22,6 @@ fun AppBarBack(
     navController: NavHostController
 )
 {
-    val titleName = navController.currentBackStackEntry?.destination?.label ?: "App"
-
     TopAppBar(title = { Text(text = title ) }, modifier, navigationIcon = {
         if (navController.previousBackStackEntry != null) {
             IconButton(onClick = { navController.navigateUp() }) {

@@ -23,9 +23,9 @@ import com.example.rememberall.R
 import com.example.rememberall.ui.components.appbar.AppBarBack
 import com.example.rememberall.ui.image.ImageCompose
 import com.example.rememberall.ui.main.MainBottomBar
-import com.example.rememberall.ui.main.MainDestination
-import com.example.rememberall.ui.notedetail.NoteDetailDestination
-import com.example.rememberall.ui.notes.NoteDestination
+import com.example.rememberall.ui.navigation.destinations.MainDestination
+import com.example.rememberall.ui.navigation.destinations.NoteDetailDestination
+import com.example.rememberall.ui.navigation.destinations.NoteDestination
 
 class ScaffoldState(val title: String)
 
