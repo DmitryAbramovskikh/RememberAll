@@ -1,10 +1,11 @@
 package com.example.rememberall.ui.notedetail
 
-import com.example.rememberall.ui.base.ViewIntent
-import com.example.rememberall.ui.base.ViewSideEffect
-import com.example.rememberall.ui.base.ViewUIState
+import com.example.rememberall.ui.base.BaseContract
+import com.example.rememberall.ui.base.BaseContract.ViewIntent
+import com.example.rememberall.ui.base.BaseContract.ViewSideEffect
+import com.example.rememberall.ui.base.BaseContract.ViewUIState
 
-class NoteDetailContract {
+class NoteDetailContract: BaseContract {
 
     data class State(val title: String = "",
                      val text: String = "",

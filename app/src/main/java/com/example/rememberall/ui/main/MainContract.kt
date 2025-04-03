@@ -1,14 +1,12 @@
 package com.example.rememberall.ui.main
 
-import com.example.rememberall.ui.base.ViewIntent
-import com.example.rememberall.ui.base.ViewSideEffect
-import com.example.rememberall.ui.base.ViewUIState
+import com.example.rememberall.ui.base.BaseContract
 
-class MainContract {
+class MainContract: BaseContract {
 
-    data class State(val isLoading: Boolean): ViewUIState
+    data class State(val isLoading: Boolean): BaseContract.ViewUIState
 
-    sealed interface Intent: ViewIntent
+    sealed interface Intent: BaseContract.ViewIntent
 
-    sealed interface Effect: ViewSideEffect
+    sealed interface Effect: BaseContract.ViewSideEffect
 }

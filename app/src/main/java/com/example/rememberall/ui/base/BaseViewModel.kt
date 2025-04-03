@@ -1,27 +1,31 @@
 package com.example.rememberall.ui.base
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
-interface ViewIntent
-interface ViewUIState
-interface ViewSideEffect
+interface BaseContract {
+    interface ViewIntent
+    interface ViewUIState
+    interface ViewSideEffect
+}
 
-abstract class BaseViewModel<VS: ViewUIState, VI: ViewIntent, VSE: ViewSideEffect>(val stringProvider: StringProvider? = null): ViewModel()
+data class ViewError(val message: String = "")
+
+abstract class BaseViewModel<VS: BaseContract.ViewUIState, VI: BaseContract.ViewIntent, VSE: BaseContract.ViewSideEffect>(val stringProvider: StringProvider? = null): ViewModel()
 {
     private val _state = mutableStateOf(setInitState())
     var state: State<VS> = _state
 
     private val _effect = MutableSharedFlow<VSE>()
     val effect: Flow<VSE> = _effect
+
+    private val _error = MutableSharedFlow<ViewError>()
+    val error: Flow<ViewError> = _error
 
     private val _intents = MutableSharedFlow<VI>()
 
@@ -44,4 +48,6 @@ abstract class BaseViewModel<VS: ViewUIState, VI: ViewIntent, VSE: ViewSideEffec
     fun setIntent(intent: VI) = viewModelScope.launch { _intents.emit(intent) }
 
     fun setEffect(effect: VSE) = viewModelScope.launch { _effect.emit(effect) }
+
+    protected fun setError(error: ViewError) = viewModelScope.launch { _error.emit(error) }
 }
