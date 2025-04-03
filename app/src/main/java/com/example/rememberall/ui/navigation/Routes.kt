@@ -1,14 +1,18 @@
 package com.example.rememberall.ui.navigation
 import kotlinx.serialization.Serializable
 
-@Serializable
-object MainRoute
+sealed interface AppRoutes
+{
+    @Serializable
+    object MainRoute: AppRoutes
 
-@Serializable
-object NotesRoute
+    @Serializable
+    object NotesRoute: AppRoutes
 
-@Serializable
-data class NoteDetailRoute(val id: Int = -1)
+    @Serializable
+    data class NoteDetailRoute(val id: Int = -1): AppRoutes
 
-@Serializable
-object ImageRoute
+    @Serializable
+    object ImageRoute: AppRoutes
+}
+

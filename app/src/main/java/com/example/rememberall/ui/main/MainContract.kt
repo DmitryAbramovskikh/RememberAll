@@ -9,4 +9,7 @@ class MainContract: BaseContract {
     sealed interface Intent: BaseContract.ViewIntent
 
     sealed interface Effect: BaseContract.ViewSideEffect
+    {
+        object AddDaily: Effect
+    }
 }
