@@ -13,8 +13,7 @@ fun NoteDetailScreen(state: NoteDetailContract.State,
                      intentListener: (NoteDetailContract.Intent) -> Unit,
                      effectListener: (NoteDetailContract.Effect) -> Unit)
 {
-    Box()
-    {
+    Box() {
         Column(modifier = Modifier) {
             OutlinedTextField(
                 value = state.title,

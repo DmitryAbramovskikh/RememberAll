@@ -59,26 +59,26 @@ fun AppNavigationHost(navController: NavHostController, modifier: Modifier = Mod
             .fillMaxSize()
             .background(Color.White)
     ) { padding ->
-        NavHost(navController = navController, startDestination = MainRoute, modifier = modifier.padding(padding)) {
+        NavHost(navController = navController, startDestination = AppRoutes.MainRoute, modifier = modifier.padding(padding)) {
 
-            composable<MainRoute> {
+            composable<AppRoutes.MainRoute> {
                 scaffoldState = ScaffoldState(stringResource(R.string.main_notes))
                 MainDestination(navController)
             }
 
-            composable<NotesRoute> {
+            composable<AppRoutes.NotesRoute> {
                 scaffoldState = ScaffoldState(stringResource(R.string.notes_title))
                 NoteDestination(navController)
             }
 
-            composable<NoteDetailRoute> { backStackEntry ->
+            composable<AppRoutes.NoteDetailRoute> { backStackEntry ->
                 scaffoldState = ScaffoldState(stringResource(R.string.note_detail_title))
-                val noteDetailScreen = backStackEntry.toRoute<NoteDetailRoute>()
+                val noteDetailScreen = backStackEntry.toRoute<AppRoutes.NoteDetailRoute>()
 
                 NoteDetailDestination(navController, noteDetailScreen.id)
             }
 
-            composable<ImageRoute>{
+            composable<AppRoutes.ImageRoute>{
                 ImageCompose()
             }
         }

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
 import com.example.rememberall.ui.base.components.BaseDestination
-import com.example.rememberall.ui.navigation.NoteDetailRoute
+import com.example.rememberall.ui.navigation.AppRoutes
 import com.example.rememberall.ui.notes.NotesContract
 import com.example.rememberall.ui.notes.NotesScreen
 import com.example.rememberall.ui.notes.NotesViewModel
@@ -19,8 +19,8 @@ fun NoteDestination(navController: NavHostController)  =
             effect.collect {
                 when(it)
                 {
-                    is NotesContract.Effect.ShowDetail -> navController.navigate(NoteDetailRoute(it.id))
-                    is NotesContract.Effect.AddNew -> navController.navigate(NoteDetailRoute())
+                    is NotesContract.Effect.ShowDetail -> navController.navigate(AppRoutes.NoteDetailRoute(it.id))
+                    is NotesContract.Effect.AddNew -> navController.navigate(AppRoutes.NoteDetailRoute())
                 }
             }
         }

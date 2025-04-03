@@ -8,6 +8,7 @@ import com.example.rememberall.ui.base.components.BaseDestination
 import com.example.rememberall.ui.main.MainContract
 import com.example.rememberall.ui.main.MainScreen
 import com.example.rememberall.ui.main.MainViewModel
+import com.example.rememberall.ui.navigation.AppRoutes
 
 private val MAIN_SCREEN_EFFECT_KEY = "main_screen_effect_key"
 
@@ -19,6 +20,7 @@ fun MainDestination(navController: NavHostController) =
             effect.collect {
                 when(it)
                 {
+                    is MainContract.Effect.AddDaily -> navController.navigate(AppRoutes.NoteDetailRoute())
                     else -> {}
                 }
             }

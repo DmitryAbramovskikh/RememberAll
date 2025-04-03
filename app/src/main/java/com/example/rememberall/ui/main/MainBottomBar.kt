@@ -17,13 +17,12 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.rememberall.ui.main.bottomnavigation.TopLevelBottomRoute
-import com.example.rememberall.ui.navigation.MainRoute
-import com.example.rememberall.ui.navigation.NotesRoute
+import com.example.rememberall.ui.navigation.AppRoutes
 import com.example.rememberall.ui.theme.md_theme_dark_primaryContainer
 
 val topLevelBottomRoutes = listOf(
-    TopLevelBottomRoute("Главный", MainRoute, "MainScreen", Icons.Outlined.Home),
-    TopLevelBottomRoute("Заметки", NotesRoute, "NotesScreen", Icons.AutoMirrored.Outlined.List)
+    TopLevelBottomRoute("Главный", AppRoutes.MainRoute, "MainScreen", Icons.Outlined.Home),
+    TopLevelBottomRoute("Заметки", AppRoutes.NotesRoute, "NotesScreen", Icons.AutoMirrored.Outlined.List)
 )
 
 @Composable

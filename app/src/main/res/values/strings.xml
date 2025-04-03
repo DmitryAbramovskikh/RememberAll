@@ -3,6 +3,7 @@
 
     <!-- Main -->
     <string name="main_notes">Main</string>
+    <string name="main_add_daily_note">Create daily note</string>
 
     <!-- Note Detail -->
     <string name="note_detail_title">Edit note</string>
