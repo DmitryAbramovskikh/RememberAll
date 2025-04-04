@@ -1,5 +1,10 @@
 package com.example.rememberall.ui.navigation
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideIn
+import androidx.compose.animation.slideOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.IntOffset
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -59,8 +65,15 @@ fun AppNavigationHost(navController: NavHostController, modifier: Modifier = Mod
             .fillMaxSize()
             .background(Color.White)
     ) { padding ->
-        NavHost(navController = navController, startDestination = AppRoutes.MainRoute, modifier = modifier.padding(padding)) {
-
+        NavHost(
+            navController = navController,
+            startDestination = AppRoutes.MainRoute,
+            modifier = modifier.padding(padding),
+            enterTransition = { slideIn(animationSpec = tween(600)) { IntOffset(it.width, 0) } + fadeIn(tween(600)) },
+            exitTransition = { slideOut(animationSpec = tween(600)) { IntOffset(-it.width, 0) }  },
+            popEnterTransition = { slideIn(animationSpec = tween(600)) { IntOffset(-it.width, 0) }  },
+            popExitTransition = { slideOut(animationSpec = tween(600)) { IntOffset(it.width, 0) } + fadeOut(tween(600)) },
+        ) {
             composable<AppRoutes.MainRoute> {
                 scaffoldState = ScaffoldState(stringResource(R.string.main_notes))
                 MainDestination(navController)
